@@ -2,7 +2,7 @@
 # displays a story with each line of /etc/passwd.
 
 input="/etc/passwd"
-while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+while IFS=: read -r h1 h2 h3 h4 h5 h6 h7
 do
-    echo "The user $f1 is part of the $f4 gang, lives in $f6 and rides $f7. $f3's place is protected by the passcode $f2, more info about the user here: $f5"
+    echo "The user $h1 is part of the $h4 gang, lives in $h6 and rides $h7. $h3's place is protected by the passcode $h2, more info about the user here: $h5"
 done < "$input"
