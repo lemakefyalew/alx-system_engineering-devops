@@ -1,0 +1,61 @@
+What Happens When You Type google.com Or Any Other URL in Your Browser and Press Enter
+Introduction
+In the world we’re living, internet for just everything. We can search anything to know, we can study, connect with our friends and relatives through social media, play online games, listen to music and watch funny videos, share your presentations with your coworkers, make discussions, have business meetings through video conferencing sites, etc.
+Since the internet became available to everyone, many people have wondered exactly how we can know to about anywhere in the world with just one click. For years that has been a question, that for many, has remained a mystery. But let me share some important information on this how the search engines work and what will exactly happen when want to search anything on the internet.
+What is a webpage? 
+Before getting started, I want to first explain what a webpage is. 
+A web page (or webpage) is a hypertext document on the World Wide Web. Web pages are delivered by a web server to the user and displayed in a web browser. A website consists of many web pages linked together under a common domain name. A webpage is basically a text file formatted a certain way so that your browser (ie. Chrome, Firefox, Safari, etc) can understand it; this format is called HyperText Markup Language (HTML). These files are located in computers that provide the service of storing said files and wait for someone to need them to deliver them. They are called servers because they serve the content that they hold to whoever needs it.
+In order to get into the matter and discover what is happening behind the magic because at first, it seems like it, or not? It is important to understand the client-server model. This model is a core framework of network computing that is organized between clients which make data requests, such as a web browser, and servers that store this data and manage most processes to serve it to clients, like a database or applications. Also, the term server refers to a physical machine on which server software is running.
+
+Now you are going to imagine you type https://webmail.expressafrica.et in the search bar but before hitting enter... Ask yourself, what is it that you just typed and how does it work? Don't worry if this is not clear, we are going to figure it out.
+
+What actually happens when you type in the browsers for example you typed webmail.expressafrica.et into the address bar of your browser?
+The first thing is the browser checks the cache for a DNS record to find the corresponding IP address of webmail.expressafrica.et.
+DNS (Domain Name System) is a database that maintains the name of the website (URL) and the particular IP address it links to. Every single URL on the internet has a unique IP address assigned to it. The IP address belongs to the computer which hosts the server of the website we are requesting to access. For example, www.expressafrica.et has an IP address of 196.189.90.1. So if you’d like, you can reach www.expressafrica.et by typing http:// 196.189.90.1on your browser. DNS is a list of URLs, and their IP addresses, like how a phone book is a list of names and their corresponding phone numbers.
+To find the DNS record, the browser checks the following caches.
+Firstly, it checks the browser cache. The browser maintains a repository of DNS records for a fixed duration for list of websites you have previously visited. So, it is the first place to run a DNS query. If you have previously visited the site and you haven’t cleared it, the browser will not process more to find it. If not, the browser checks the OS cache. If it is not in the browser cache, the browser will make a system call (i.e., get hostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.
+If the browser is still not lucky here, it checks the router cache. If it’s not on your computer, the browser will communicate with the router that maintains its’ own cache of DNS records. However if the searched topic is not in router cache, it checks the ISP cache. If all steps fail, the browser will move on to the ISP. Your ISP maintains its’ own DNS server, which includes a cache of DNS records, which the browser would check with the last hope of finding your requested URL.
+
+Why this all cache? Why our searches are recorded at all these steps? Although our information being cached somewhere doesn’t make us feel very comfortable when it comes to privacy, caches are essential for regulating network traffic and improving data transfer times. Anyway, let’s see what happen if it still is not cached on ISP, ISP’s DNS server initiates a DNS query to find the IP address of the server that hosts wemail.expressafrica.et.
+As mentioned earlier, for my computer to connect with the server that hosts wemail.expressafrica.et, I need the IP address of wemail.expressafrica.et. The purpose of a DNS query is to search multiple DNS servers on the internet until it finds the correct IP address for the website. This type of search is called a recursive search since the search will repeatedly continue from a DNS server to a DNS server until it either finds the IP address we need or returns an error response saying it was unable to find it.
+
+In this situation, we would call the ISP’s DNS server a DNS recursor whose responsibility is to find the proper IP address of the intended domain name by asking other DNS servers on the internet for an answer. The other DNS servers are called name servers since they perform a DNS search based on the domain architecture of the website domain name.
+
+Let’s see the domain names and their level using diagram
+ 
+Many website URLs we encounter today contain a third-level domain, a second-level domain, and a top-level domain. Each of these levels contains their own name server, which is queried during the DNS lookup process.
+
+For wemail.expressafrica.et, first, the DNS recursor will contact the root name server. The root name server will redirect it to the .et domain name server .et name server will redirect it to the expressafrica.et name server. The expressafrica.et name server will find the matching IP address for wemail.expressafrica.et in its’ DNS records and return it to your DNS recursor, which will send it back to your browser.
+
+These requests are sent using small data packets that contain information such as the content of the request and the IP address it is destined for (IP address of the DNS recursor). These packets travel through multiple networking equipment between the client and the server before it reaches the correct DNS server. This equipment use routing tables to figure out which way is the fastest possible way for the packet to reach its’ destination. If these packets get lost, you’ll get a request failed error. Otherwise, they will reach the correct DNS server, grab the correct IP address, and come back to your browser.
+The browser initiates a TCP connection with the server.
+Once the browser receives the correct IP address, it will build a connection with the server that matches the IP address to transfer information. Browsers use internet protocols to build such connections. There are several different internet protocols that can be used, but TCP is the most common protocol used for many types of HTTP requests.
+To transfer data packets between your computer(client) and the server, it is important to have a TCP connection established. This connection is established using a process called the TCP/IP three-way handshake. This is a three-step process where the client and the server exchange SYN(synchronize) and ACK(acknowledge) messages to establish a connection.
+The client machine sends a SYN packet to the server over the internet, asking if it is open for new connections.
+If the server has open ports that can accept and initiate new connections, it’ll respond with an ACKnowledgment of the SYN packet using a SYN/ACK packet.
+The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an ACK packet.
+Then a TCP connection is established for data transmission!
+The browser sends an HTTP request to the webserver.
+Once the TCP connection is established, it is time to start transferring data! The browser will send a GET request asking for maps.google.com web page. If you’re entering credentials or submitting a form, this could be a POST request. This request will also contain additional information such as browser identification (User-Agent header), types of requests that it will accept (Accept header), and connection headers asking it to keep the TCP connection alive for additional requests. It will also pass information taken from cookies the browser has in store for this domain.
+The HTTPS requests and responses are secure by a standard security protocol called Secure Sockets Layer (SSL) which encrypts the data being exchanged between your browser and Holberton School's website server using a Public Key Infrastructure (PKI).
+
+In the PKI, two cryptographic keys are used: a public key and a private key. These pair of keys is asymmetrical which ensures only the owners of the matching keys can unencrypt the sent and/or received information. For being able to get this done, Holberton School's website manager had to issue an SSL certificate from a trusted certificate authority and that is the reason why you can see a lock icon on the search bar of the browser.
+The server handles the request and sends back a response.
+The server contains a webserver (i.e., Apache, IIS) that receives the request from the browser and passes it to a request handler to read and generate a response. The request handler is a program (written in ASP.NET, PHP, Ruby, etc.) that reads the request, its’ headers, and cookies to check what is being requested and also update the information on the server if needed. Then it will assemble a response in a particular format (JSON, XML, HTML).
+The server sends out an HTTP response.
+The server response contains the web page you requested as well as the status code, compression type (Content-Encoding), how to cache the page (Cache-Control), any cookies to set, privacy information, etc.
+If you look at the above response, the first line shows a status code. This is quite important as it tells us the status of the response. There are five types of statuses detailed using a numerical code.
+ 1xx indicates an informational message only
+ 2xx indicates success of some kind
+ 3xx redirects the client to another URL
+ 4xx indicates an error on the client’s part
+ 5xx indicates an error on the server’s part
+So, if you encountered an error, you can take a look at the HTTP response to check what type of status code you have received.
+The browser displays the HTML content (for HTML responses, which is the most common).
+The browser displays the HTML content in phases. First, it will render the bare bone HTML skeleton. Then it will check the HTML tags and send out GET requests for additional elements on the web page, such as images, CSS stylesheets, JavaScript files, etc. These static files are cached by the browser, so it doesn’t have to fetch them again the next time you visit the page. In the end, you’ll see maps.google.com appearing on your browser.
+Conclusion
+In our modern society when everything is online, it is amazing to know the complexity that takes place in order for us to be able to get to a website. Yet, it is done so fast that very few would even begin to fathom the amazing process that takes place. Although this seems like a very tedious prolonged process, we know that it takes less than seconds for a web page to render after we hit enter on our keyboard. All of these steps happen within milliseconds before we could even notice.
+How DNS works
+What is TCP/IP (Transmission Control Protocol/Internet Protocol)? - Definition from WhatIs.com
+What is HTTPS? Why SSL? The Purpose of using SSL Certificates
+
